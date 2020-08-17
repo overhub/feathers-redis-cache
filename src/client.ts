@@ -24,10 +24,10 @@ export default (options: any = {}) => {
         retry_strategy: () => {
           app.set('redisClient', undefined);
 
-          console.log(`${chalk.yellow('[redis]')} not connected`);
+          // console.log(`${chalk.yellow('[redis]')} not connected`);
 
           return retryInterval;
-        }
+        },
       };
       const client = redis.createClient(redisOptions);
 
@@ -36,7 +36,7 @@ export default (options: any = {}) => {
       client.on('ready', () => {
         app.set('redisClient', client);
 
-        console.log(`${chalk.green('[redis]')} connected`);
+        // console.log(`${chalk.green('[redis]')} connected`);
       });
     } catch (err) {
       errorLogger(err);
@@ -45,4 +45,4 @@ export default (options: any = {}) => {
 
     return this;
   };
-}
+};
